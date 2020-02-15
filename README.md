@@ -20,10 +20,7 @@ We will use these special tokens as features i.e number of identifiers, constant
 
 For eg. Consider two simple java program to add two numbers :
 
-![GitHub Logo](/images/logo1.jpg)
-Format: ![Alt Text](url)
-
-
+![alt text](https://github.com/puk18/bigdata-project-w2020/blob/master/Images/log1.jpg)
 
 As we can see these lexical analysis outputs for these two programs are completely similar even though they are syntactically different, we will use these lexical tokens as features for our classifiers.
 
@@ -39,13 +36,7 @@ As discussed above we will generate our dataset with the help of lexical analyse
 For generating lexical tokens initially we thought of building our own lexical analyser however it will be time consuming and some off the shelf components already exist so we are using an already available lexical analyser known as Jflex.This tool will take as input the source code and generate the lexical tokens for source code, these lexical tokens will be stored in a .csv file such that each row in .csv file would represent different number of token present in each source code file.
 
 
-![GitHub Logo](/images/logo.jpg)
-Format: ![Alt Text](url)
-
-
-
-
-
+![alt text](https://github.com/puk18/bigdata-project-w2020/blob/master/Images/logo.jpg)
 
 
 
