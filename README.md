@@ -20,7 +20,7 @@ We will use these special tokens as features i.e number of identifiers, constant
 
 For eg. Consider two simple java program to add two numbers :
 
-![GitHub Logo](/images/logo1.png)
+![GitHub Logo](/images/logo1.jpg)
 Format: ![Alt Text](url)
 
 
@@ -39,7 +39,7 @@ As discussed above we will generate our dataset with the help of lexical analyse
 For generating lexical tokens initially we thought of building our own lexical analyser however it will be time consuming and some off the shelf components already exist so we are using an already available lexical analyser known as Jflex.This tool will take as input the source code and generate the lexical tokens for source code, these lexical tokens will be stored in a .csv file such that each row in .csv file would represent different number of token present in each source code file.
 
 
-![GitHub Logo](/images/logo.png)
+![GitHub Logo](/images/logo.jpg)
 Format: ![Alt Text](url)
 
 
@@ -64,10 +64,9 @@ When we train each tree in a random forest, each tree learns from a random sampl
 
 SVM: SVM(Support Vector Machine) is the differentiating classifier which is used for linear and non linear data and it is defined by a type of separation called hyperplane. This method is supported by a labeled training data set which is supervised and the algorithm gives the output in the form of hyperplane which differentiates new examples. Hyperplane is a new dimension which seeks for optimal separation so called decision boundary. The core idea behind this algorithm is to separate the data from two different classes in the fashion of a hyperplane.  Usually there are an infinite number of lines i.e. hyperplanes that separates two classes but this algorithm aims to minimize the classification error and it searches the hyperplane that has the maximum margin known as maximum marginal hyperplane(MMH)
 	
-References:						 							
-[1]  Roy, Chanchal K., and James R. Cordy. “NICAD: Accurate detection of near-miss intentional clones using flexible pretty-printing and code normalization.” Program Comprehension, ICPC. The 16th IEEE International Conf. on. IEEE, 2008.
- 								
-[2]  Baxter, Ira D., et al. “Clone detection using abstract syntax trees.” Software Maintenance, Proc. , Int.l Conf. on. IEEE, 1998. 
-[3].Code clones detection using machine learning technique: Support vector machine.https://ieeexplore.ieee.org/document/7813733
-[4].Semantic Clone Detection Using Machine Learning https://ieeexplore.ieee.org/document/7838289
+References:
+1. Roy, Chanchal K., and James R. Cordy. “NICAD: Accurate detection of near-miss intentional clones using flexible pretty-printing and code normalization.” Program Comprehension, ICPC. The 16th IEEE International Conf. on. IEEE, 2008.
+1. Baxter, Ira D., et al. “Clone detection using abstract syntax trees.” Software Maintenance, Proc. , Int.l Conf. on. IEEE, 1998. .
+1. Code clones detection using machine learning technique: Support vector machine.https://ieeexplore.ieee.org/document/7813733
+1. Semantic Clone Detection Using Machine Learning https://ieeexplore.ieee.org/document/7838289
 
