@@ -6,11 +6,10 @@ Created on Sun Apr  5 23:28:03 2020
 @author: pulkitwadhwa
 """
 
-import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 from sklearn.cluster import KMeans
-
+from datetime import datetime
 
 
 #function to prepare the training Data
@@ -33,6 +32,7 @@ def findK(trainData,n):
     return Error
 
 
+#fucntion to plot the elbow
 
 def plotElbow(Error,n):
     plt.plot(range(1, n), Error)
@@ -42,6 +42,7 @@ def plotElbow(Error,n):
     plt.ylabel('Inertia')
     plt.show()    
     
+#function to cluster the data and plot the cluster    
 def kMeans(trainData,k):
     kmeans = KMeans(algorithm='auto', copy_x=True, init='k-means++', max_iter=10000,n_clusters=k , n_init=11, n_jobs=1,
                 precompute_distances='auto',
@@ -56,6 +57,9 @@ def kMeans(trainData,k):
     plt.xlabel('Keyword')
     plt.ylabel('Identifier')
     plt.show() 
+
+
+
     
 if __name__ == '__main__':
     dPath=input("enter file Path")
@@ -65,4 +69,7 @@ if __name__ == '__main__':
     plotElbow(Error,n)
     k=5
     kMeans(trainData,k)
+    
        
+
+    
