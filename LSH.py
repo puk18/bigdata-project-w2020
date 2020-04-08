@@ -9,6 +9,7 @@ from datetime import datetime
 import numpy as np
 import pandas as pd
 from sklearn import random_projection
+import time
 
 
 projections=np.random.randn(2,15)
@@ -69,19 +70,16 @@ if __name__ == '__main__':
     
     
     dPath=input("enter file Path")
-    start_time = datetime.now()
+    starttime = time.time()
     trainData=DataPreparation(dPath)
     hashing(trainData,True)
-    end_time = datetime.now()
-    print('Duration: {}'.format(end_time - start_time))
+    print("--- %s seconds ---" % (time.time() - starttime))
    
     
-    start_time = datetime.now()
+    starttime = time.time()
     transformedData=gaussData(dPath)
     hashing(transformedData,False)     
-    end_time = datetime.now()
-    print('Duration: {}'.format(end_time - start_time))
-
+    print("--- %s seconds ---" % (time.time() - starttime))
 
 
 

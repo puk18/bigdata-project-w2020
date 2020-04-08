@@ -10,8 +10,7 @@ import numpy as np
 import pandas as pd
 from sklearn.cluster import KMeans
 from sklearn.decomposition import PCA
-from datetime import datetime
-
+import time
 
 projections=np.random.randn(1,2)
 
@@ -81,13 +80,14 @@ if __name__ == '__main__':
     
     
     dPath=input("enter file Path")
-    start_time = datetime.now()
+    starttime = time.time()
+
     trainData=DataPreparation(dPath)
     k=5
     labels=kMeans(trainData,k)
     hashing(trainData,labels,k)
-    end_time = datetime.now()
-    print('Duration: {}'.format(end_time - start_time))
+   
+    print("--- %s seconds ---" % (time.time() - starttime))
 
 
 
