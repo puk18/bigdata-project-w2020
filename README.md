@@ -1,7 +1,7 @@
-<p align="center">
-<b>Bigdata-project-w2020<br>
-Code Clone Detection</b>
-</p>
+<h3 align="center">
+Bigdata-project-w2020<br>
+Code Clone Detection
+<h3>
 
 
 # Abstract 
