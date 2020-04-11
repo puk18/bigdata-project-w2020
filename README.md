@@ -1,63 +1,200 @@
 # bigdata-project-w2020
 # Code Clone Detection
 
-Abstract 
+# Abstract 
 
-Large program code has little or no comments that leads to problems in code comprehension,the better approach is when comments would be generated automatically on the basis of mining stack overflow which contains code-description mappings. However for mapping these descriptions to unknown codes we need to detect code clones i.e similar code segments.There are 4 types of code clones and various approaches for detecting code clones such as lexical parsing and also generating abstract syntax trees and program dependency graphs. These approaches will be used to generate features which will then be used to train our classification algorithms using scikit learn.  
-
-
-1.Introduction
-
-Code clones are two fragments of codes which are identical to each other which are generated using copy and paste activities of the programmer, but the main problem with code clones is replication of bugs and difficulties in software comprehension and maintenance, so it becomes imperative to detect these clones.The 4 types of clones are:
-Type1 clones:-These are Identical code fragments but may have some variations in whitespace, layout, and comments 
-Type2 clones:-These are Syntactically equivalent fragments with some variations in identifiers names, literals, types, whitespace, layout and comments 
-Type3 clones:-These are also Syntactically similar code with inserted, deleted, or updated statements 
-Type4 clones:-These are  Semantically equivalent, but syntactically different code 
-
-Initially we are working on detecting type1 and type 2 clones and will further extend our work on detecting type 3 and type 4 clones. For detecting type 1 and type 2 clones we will perform lexical analysis  of the source codes. Lexical analysis will help in assigning special tokens(i.e identifiers,constants,operators etc) to code present in source files.
-
-We will use these special tokens as features i.e number of identifiers, constants, keywords etc present in the program. If the other code has similar number of these tokens these codes may be similar
-
-For eg. Consider two simple java program to add two numbers :
-
-![alt text](https://github.com/puk18/bigdata-project-w2020/blob/master/Images/log1.jpg)
-
-As we can see these lexical analysis outputs for these two programs are completely similar even though they are syntactically different, we will use these lexical tokens as features for our classifiers.
-
-There have been works to detect code clones but however most of the work has been done using text-based techniques[1] which are good to detect type 1 clones,people have also worked upon token based,syntax trees[2] or graph based detection techniques but very have used machine learning to detect clones[3][4]. 
+<p align="justify">
+Code cloning refers to similar or identical fragments of code. Reusing existing code for increasing software productivity is a key element of object oriented programming which makes code clone detection and management a primary concern for the current industry. Consequently, this cloning process may lead to bug propagation that significantly affects the maintenance cost. By considering this problem, detecting code clones  appears as an active area of research. For our project we  used machine learning and similarity search  to detect the similarity between the  code segments on the basis of lexical analysis of programs. We have used K-Means algorithm (to group the similar code in same cluster) and Locality Sensitive Hashing to group similar code fragments in the same bucket.
+</p>
 
 
 
 
-2.Materials and Methods 
+# 1. Introduction
 
-As discussed above we will generate our dataset with the help of lexical analyser from various various source codes written in java,These dataset of source codes is IJaDataset, it has variety of source codes which will be used to generate tokens.This IJADataset contains around  47885 with    1009k lines of code.
-
-For generating lexical tokens initially we thought of building our own lexical analyser however it will be time consuming and some off the shelf components already exist so we are using an already available lexical analyser known as Jflex.This tool will take as input the source code and generate the lexical tokens for source code, these lexical tokens will be stored in a .csv file such that each row in .csv file would represent different number of token present in each source code file.
-
-
-![alt text](https://github.com/puk18/bigdata-project-w2020/blob/master/Images/logo.jpg)
+<p align="justify">
+Code clones are fragments of codes which are identical to each other, these clones are generated using copy and paste activities of the programmer, but the main problem with code clones is replication of bugs and difficulties in software maintenance, so it becomes imperative to detect these clones.
+</p>
 
 
+The 4 types of clones are:
 
- Proposed Work
-   
-		 	 	 		
-Initially we are dealing with the classification problem our labels will include the type of code i.e if it’s a sorting code so it will have a label as filename which will then be used to check with the files in testing,If a file in testing would have same features then it will detect the clone and output the name of identical code fragment in the training set.Further more we are planning to also perform clustering such that it will group similar codes in the same group.
+* Exact clones (Type 1):Identical code segments except for changes in comments, layouts and whitespaces.
 
-Random forest, SVM(Support Vector Machine) algorithm will be used for classification and for clustering K-means algorithm will be used.We will use the scikit implementation of these algorithms.
+* Renamed clones (Type 2):Code segments which are syntactically or structurally similar other than changes in comments, identifiers, types, literals, and layouts. These clones are also called parameterised clones.  
+ 
+* Near Miss clones (Type 3): Copied pieces with further modification such as addition or removal of statements and changes in whitespaces, identifiers, layouts, comments, and types but outcomes are similar. These clones are also known as gapped clones. 
 
-Random Forest: Random forest is basically a combination of decision trees. Instead of simply averaging the prediction of trees, this model is based on the following factors because of which we call it a random forest. The factors are:
-Random sampling of training data points while building trees
-Random subsets of features considered while splitting nodes
+* Semantic clones (Type 4): More than one code segments that are functionally similar but implemented by different syntactic variants.
 
-When we train each tree in a random forest, each tree learns from a random sample of data points. In a similar fashion, the other trees are trained and at the end the average of predictions is calculated to get the averaged prediction, This process is also termed as bagging.Also, while splitting the individual nodes in each decision tree, we only consider the subset of features and again at the end, the average is calculated to get the prediction.
+<p align="justify">
+The aim of our project is to detect type 1 and type 2 clones. As most of the programmers try to simply replicate their previous work and reuse existing pieces of code, due to this trend many bugs are introduced in the software unknowingly which are very hard to detect once the program reaches a certain level of complexity. With our approach of using machine learning, we want to detect the clones in such a way that it can be used  for various other purposes also like aspect mining, program understanding, plagiarism detection, code compaction, software evolution analysis, code quality analysis, bug detection. This makes clone detection effective and useful part of software analysis. 
+</p>  
+<p align="justify">
+There have been previous works which involved detecting code clones, text based approach was used in work done by [1], however this was only capable of detecting type 1 clones, Further works also used approaches like token based, graph based[7], very few[5][6] tried to use machine learning for detecting clones, but most of approaches were based on classification rather than using clustering and similarity search which are good candidates for finding similar items 
+</p>
 
-SVM: SVM(Support Vector Machine) is the differentiating classifier which is used for linear and non linear data and it is defined by a type of separation called hyperplane. This method is supported by a labeled training data set which is supervised and the algorithm gives the output in the form of hyperplane which differentiates new examples. Hyperplane is a new dimension which seeks for optimal separation so called decision boundary. The core idea behind this algorithm is to separate the data from two different classes in the fashion of a hyperplane.  Usually there are an infinite number of lines i.e. hyperplanes that separates two classes but this algorithm aims to minimize the classification error and it searches the hyperplane that has the maximum margin known as maximum marginal hyperplane(MMH)
-	
-References:
-1. Roy, Chanchal K., and James R. Cordy. “NICAD: Accurate detection of near-miss intentional clones using flexible pretty-printing and code normalization.” Program Comprehension, ICPC. The 16th IEEE International Conf. on. IEEE, 2008.
-1. Baxter, Ira D., et al. “Clone detection using abstract syntax trees.” Software Maintenance, Proc. , Int.l Conf. on. IEEE, 1998. .
-1. Code clones detection using machine learning technique: Support vector machine.https://ieeexplore.ieee.org/document/7813733
-1. Semantic Clone Detection Using Machine Learning https://ieeexplore.ieee.org/document/7838289
+# 2. Methods and Methodology 
+
+It is further divided into two phases :-
+
+- Data generation 
+- Algorithm implementation
+
+# 2.1  Data Preparation
+<p align="justify">
+There was no available dataset for code clones, so there were no definitive set of features to characterize  these. Therefore we chose the IJADataset which is a collection of java programs and contains 47k files with around 10092k lines of code. 
+</p>
+We performed following set of operations to generate data suitable for algorithms.
+<p align="justify">
+ 
+- Step 1 :- Injection of code clones in dataset.<br>
+ 
+  * Injecting Type 1 clones(Exact CLones) :- Created multiple copies of the codes, Addition of comments in few codes.
+  
+  * Injecting Type 2 clones(Renamed CLones):- Modifications in identifier names including Type 1 changes<br>
+</p>
+
+- Step 2 :- Generating Features:-
+
+  * Next step was to look for the features which could be used to distinguish each of these programs, thus we performed lexical analysis using JAVALANG tool on each program present in the dataset, it breaks each program into a set of tokens, we used count of each token present in a program as the set of features for that particular program.
+
+
+
+Consider an example program to add two numbers after performing lexical analysis the tokens generated are given below.
+
+![alt text](https://github.com/ankur27aggarwal/dummy/blob/master/Screen%20Shot%202020-04-10%20at%2010.06.02%20PM.png)
+
+<p align="justify">
+These lexical tokens were stored in  CodeClone.csv file such that each row represents different number of tokens present in each source code file. After parsing all the programs, our dataset Contains 56,168 rows (or programs), including 10k duplicates approx and 15 different features.
+</p>
+
+![alt text](https://github.com/ankur27aggarwal/dummy/blob/master/Screenshot%202020-04-10%20at%205.22.53%20PM.png)
+Here null values indicate features(tokens) which are not present in certain programs.
+
+# 2.2 Algorithms Implemented
+
+Two big challenges that are associated with generated dataset are :-
+
+* Curse Of Dimensionality :- High Dimensionality of the unique characteristic i.e feature vector required to identify clones.
+
+* Cost Of Comparison Operation :- Comparison of instances with all other instances in the dataset for finding similarity is expensive in terms of time and memory.
+
+Due to these two factors we decided to implement K-Means and Locality Sensitive Hashing with their respective variations.
+
+# 2.2.1 K-MEANS ALGORITHM
+<p align="justify">
+K-means algorithm is an iterative algorithm that tries to partition the dataset into K pre-defined distinct non-overlapping subgroups (clusters) where each data point belongs to only one group. Since clustering is one of the most common exploratory data analysis techniques used to get an intuition about the structure of the data.Therefore, it makes sense to use K-means, as similar codes would be in the same cluster which is our main motivation behind the usage of k-means. For our project we have used the scikit-learn’s implementation of k-means and used the original higher dimensional dataset for clustering.
+</p>
+
+<p align="justify">
+Number of clusters :- To find the optimal number of clusters we used the elbow method using Inertia(Sum of squared distances of samples to their closest cluster center).
+</p>
+
+# Advanced Approach :-
+
+![alt text](https://github.com/ankur27aggarwal/dummy/blob/master/Screenshot%202020-04-10%20at%205.55.52%20PM.png)
+
+This is done in three steps :-
+
+Step 1 :- In this step we reduce the dimensionality by using the same PCA technique mentioned above.
+
+Step 2 :- Dividing input space into smaller subspaces.
+
+Step 3 :- Hashing as a candidate for nearest neighbour search.
+
+# 2.2.2 Locality Sensitive Hashing
+
+Locality-Sensitive Hashing (LSH) is an algorithmic technique that hashes similar input items into the same "buckets" with high probability.
+![alt text](https://github.com/ankur27aggarwal/dummy/blob/master/Screenshot%202020-04-10%20at%205.56.37%20PM.png)
+For our project we used LSH using Random Projection. Locality Sensitive Hashing solves both the challenges mentioned earlier which are explained as follows :-
+
+* For Challenge 1 :- As shown in the figure the first hash function reduces the dimensionality of the dataset as we project our feature vector onto a lower-dimensional subspace using a random matrix whose columns have unit length.
+
+* For Challenge 2 :-  The second hash function further reduces the dimensionality and thus comparing  each instance with all the other instances on the basis of hash value  gives the exact similar pairs. We use band=1 with buckets containing code clones.
+
+# 3. Results
+<p align="justify">
+
+For finding the best value of number of clusters(k) as discussed above we used elbow method, we plotted a graph between inertia and number of clusters, as our main aim is to choose k which has a small value of inertia. From the graph given below, we found that after 5 clusters there is not much significant change in inertia thus we chose numbers of clusters as 5.
+</p >
+
+
+<p align="center">
+  <img  src="https://github.com/ankur27aggarwal/dummy/blob/master/Screen%20Shot%202020-04-10%20at%2010.32.59%20PM.png"><br>
+ Elbow plot w.r.t inertia and number of clusters
+</p>
+
+
+![alt text](https://github.com/ankur27aggarwal/dummy/blob/master/Screenshot%202020-04-10%20at%205.58.10%20PM.png)
+<p align="center">
+Clustering with k= 5, Plot of points w.r.t to keywords and identifiers.
+</p> 
+
+
+
+<p align="justify"> 
+Drawbacks of choosing number of cluster k=5 :- Our dataset contains around 46k non duplicated programs so ideally it should have around 46k clusters, therefore K=5  won’t be a good choice for clone detection. To deal with the problem of dimensionality we also tried PCA(Principal Component Analysis) dimensionality reduction technique. Results with clustering on dimensionally reduced data were same, Elbow was at k=5. Thus we used advanced approaches for finding similarity between source codes
+</p>
+
+* Compared the performance of both approaches on the basis of execution time.
+* Locality sensitive Hashing detected duplicates faster than using Clustering and Hashing together.
+
+| Approach | Execution Time |
+| ------ | ------ |
+| PCA, K-Means Clustering and Hashing | ~3.71 Seconds |
+| Locality Sensitive Hashing Using Random Projection | ~2.16 Seconds |
+| Locality Sensitive Hashing Using Gaussian Projection(Scikit learn) | ~1.82 Seconds |
+
+# 4. Discussion
+
+
+<p align="justify">
+To find the relevance of our solution, we tried to compare our solution with existing works[5][6], as mostly were classification based and had less number of instances. We found that it was inaccurate to compare classification based approaches with clustering. For such problems where we need to find similarity between the elements, clustering and similarity search worked better, out of which similarity search is better option for finding exact similars, as LSH using random projection reduces the dimensionality of dataset and also reduces the computational time.
+</p>
+
+<p align="justify">
+However, results would be have been completely different if we only needed to find near similar instead of exact similars. For example if we changed the values in dot product from float to integer, it gave near similars and buckets reduced drastically.  Further we did not have false positives and false negatives as we were only finding exact clones or similars. There would have been false positives and false negatives definitely if we would have been finding near similars. 
+</p>
+
+<p align="justify">
+Our project works only on syntactic clones, we are further thinking to extend our project for semantic clones which can be detected using abstract syntax trees, thus extracting features from these trees can help extracting the semantic details of the program which can be used as features to detect semantic clones.
+</p>
+
+<p align="justify">
+We only included java programs in our dataset thus we can add support for more languages which inturn can help in detecting clones for other languages also.
+</p>
+<p align="justify">
+Our dataset contains 56k instances of java source codes. We are Further directing our work for source codes from other programming languages also, thus instances will increase gradually, so we are exploring ways to implement a parallelized version of Locality Sensitive Hashing using random projection. This may give us faster results.
+</p>
+
+# 5. References
+  1. Chanchal Kumar Roy, James R Cordy, "A Survey on Software Clone Detection Research", Computer and Information Science, vol. 115, no.        541, pp. 115, 2007.
+  2. Ritesh V. Patil, Shashank. D. Joshi, Sachin V. Shinde, V. Khanna, "An effective approach using dissimilarity measures to estimate          software code clone", Electrical Electronics Signals Communication and Optimization (EESCO), pp. 1-6, 2015.
+  3. Shantanu Saraswat, "Efficient detection of code clones B. Tech", Project under Dr. Amey Karkare CSE Deptt. IIT Kanpur, 2011.
+  4. Randy Smith, Susan Horwitz, "Detecting and measuring similarity in code clones", Proceeding of Third International Workshop on            Detection of Software Clones., 2009.
+  5. S. Jadon, "Code clones detection using machine learning technique: Support vector machine," 2016 International Conference on              Computing, Communication and Automation (ICCCA), Noida, 2016, pp. 399-303.
+  6. A. Sheneamer and J. Kalita, "Semantic Clone Detection Using Machine Learning," 2016 15th IEEE International Conference on Machine          Learning and Applications (ICMLA), Anaheim, CA, 2016, pp. 1024-1028.
+  7. Baxter, Ira & Yahin, Andrew & de Moura, Leonardo & Sant'Anna, Marcelo & Bier, Lorraine. (1998). Clone Detection Using Abstract Syntax Trees.. Proc. of International Conference on Software Maintenance. 368-377. 368-377. 10.1109/ICSM.1998.738528. 
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
