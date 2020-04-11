@@ -1,6 +1,7 @@
-# bigdata-project-w2020
-# Code Clone Detection
-
+<p align="center">
+Bigdata-project-w2020<br>
+Code Clone Detection
+</p>
 # Abstract 
 
 <p align="justify">
