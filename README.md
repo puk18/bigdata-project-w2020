@@ -166,7 +166,7 @@ Our project works only on syntactic clones, we are further thinking to extend ou
 
 
 <p align="justify">
-Our dataset contains 56k instances of java source codes only. We are further looking forward to extend our work for source codes from other programming languages. Thus instances will increase gradually, so we are exploring ways to implement a parallelized version of Locality Sensitive Hashing using random projection. This may give us faster results.
+Dataset contains 56k instances of java source codes only. We are further looking forward to extend our work for source codes from other programming languages. Thus instances will increase gradually, so we are exploring ways to implement a parallelized version of Locality Sensitive Hashing using random projection. This may give us faster results.
 </p>
 
 # 5. References
