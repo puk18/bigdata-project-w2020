@@ -151,13 +151,12 @@ Drawbacks of choosing number of cluster k=5 :- Our dataset contains around 46k n
 
 # 4. Discussion and Future work
 
-
 <p align="justify">
-To find the relevance of our solution, we tried to compare our solution with existing works[5][6], as mostly were classification based and had less number of instances. However it was inappropriate to compare classification based approaches with clustering. For such problems where we need to find similarity between the elements, clustering and similarity search worked better. Also,we concluded, similarity search is a better option for finding exact similars, as LSH using random projection reduces the dimensionality of the dataset and also reduces the computational time.
+To find the relevance of our solution, we tried to compare our solution with existing works[5][6], but most of the works were classification based and had less number of instances, hence it was inappropriate to compare our work with them. For such problems where we need to find similarity between the elements clustering and similarity search are good candidates, out of which similarity search is better option for finding exact similars, as LSH using random projection reduces the dimensionality of dataset and also reduces the computational time.
 </p>
 
 <p align="justify">
-However, results would have been completely different if we only needed to find near similar instead of exact similars. For example if we changed the values in dot product from float to integer, it gave near similars and buckets reduced drastically. Also, there would have been false positives and false negatives if we would have been finding near similars. We did not have those (false positives and false negatives) in this project, as we were only finding exact clones or similars . 
+However, results would have been completely different if we only needed to find near similar instead of exact similars. For example if we changed the values in dot product from float to integer, it gave near similars and buckets reduced drastically. Also, there would have been false positives and false negatives if we would have been finding near similars. We did not have these (false positives and false negatives) in our work,  as we were only finding exact clones or similars . 
 </p>
 
 <p align="justify">
