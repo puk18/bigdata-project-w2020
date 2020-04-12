@@ -152,7 +152,7 @@ Drawbacks of choosing number of cluster k=5 :- Our dataset contains around 46k n
 # 4. Discussion and Future work
 
 <p align="justify">
-To find the relevance of our solution, we tried to compare our solution with existing works[5][6], but most of the works were classification based and had less number of instances, hence it was inappropriate to compare our work with them. For such problems where we need to find similarity between the elements clustering and similarity search are good candidates, out of which similarity search is better option for finding exact similars, as LSH using random projection reduces the dimensionality of dataset and also reduces the computational time.
+To find the relevance of our solution, we tried to compare our solution with existing works[5][6], but most of the works were classification based and had less number of instances, hence it was inappropriate to compare our work with them. For such problems where we need to find similarity between the elements clustering and similarity search are good candidates. Similarity search is better option for finding exact similars than clustering, as LSH using random projection reduces the dimensionality of dataset and also reduces the computational time.
 </p>
 
 <p align="justify">
