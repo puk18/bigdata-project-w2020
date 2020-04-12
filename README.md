@@ -160,7 +160,7 @@ However, results would have been completely different if we only needed to find 
 </p>
 
 <p align="justify">
-Our project works only on syntactic clones, we are further thinking to extend our project for semantic clones which can be detected using abstract syntax trees. Thus extracting features from these trees can help extracting the semantic details of the program which can be used as features to detect semantic clones.
+Our project works only on syntactic clones, semantic clones can be detected using abstract syntax trees. Thus extracting features from these trees can help extracting the semantic details of the program which can be used as features to detect semantic clones. This is desirable for future work
 </p>
 
 
