@@ -156,11 +156,11 @@ To find the relevance of our solution, we tried to compare our solution with exi
 </p>
 
 <p align="justify">
-However, results would have been completely different if we only needed to find near similar instead of exact similars. For example if we changed the values in dot product from float to integer, it gave near similars and buckets reduced drastically. Also, there would have been false positives and false negatives if we would have been finding near similars. We did not have these (false positives and false negatives) in our work,  as we were only finding exact clones or similars . 
+However, results would have been completely different if we only needed to find near similar instead of exact similars. For example if we changed the values in dot product from float to integer, it gave near similars and buckets reduced drastically. Also, there would have been false positives and false negatives if we would have been finding near similars. We did not have these (false positives and false negatives) in our work,  as we were only finding exact clones or similars. 
 </p>
 
 <p align="justify">
-Our project works only on syntactic clones, semantic clones can be detected using abstract syntax trees. Thus extracting features from these trees can help extracting the semantic details of the program which can be used as features to detect semantic clones. This is desirable for future work
+Our project works only on syntactic clones, semantic clones can be detected using abstract syntax trees. Thus extracting features from these trees can help extracting the semantic details of the program which can be used as features to detect semantic clones. This is desirable for future work.
 </p>
 
 
