@@ -153,7 +153,7 @@ Drawbacks of choosing number of cluster k=5 :- Our dataset contains around 46k n
 
 
 <p align="justify">
-To find the relevance of our solution, we tried to compare our solution with existing works[5][6], as mostly were classification based and had less number of instances. We found that it was inaccurate to compare classification based approaches with clustering. For such problems where we need to find similarity between the elements, clustering and similarity search worked better. Also,we concluded, similarity search is a better option for finding exact similars, as LSH using random projection reduces the dimensionality of the dataset and also reduces the computational time.
+To find the relevance of our solution, we tried to compare our solution with existing works[5][6], as mostly were classification based and had less number of instances. However it was inappropriate to compare classification based approaches with clustering. For such problems where we need to find similarity between the elements, clustering and similarity search worked better. Also,we concluded, similarity search is a better option for finding exact similars, as LSH using random projection reduces the dimensionality of the dataset and also reduces the computational time.
 </p>
 
 <p align="justify">
@@ -164,11 +164,9 @@ However, results would have been completely different if we only needed to find 
 Our project works only on syntactic clones, we are further thinking to extend our project for semantic clones which can be detected using abstract syntax trees. Thus extracting features from these trees can help extracting the semantic details of the program which can be used as features to detect semantic clones.
 </p>
 
+
 <p align="justify">
-We only included java programs in our dataset thus we can add support for more languages which inturn can help in detecting clones for other languages also.
-</p>
-<p align="justify">
-Our dataset contains 56k instances of java source codes. We are further directing our work for source codes from other programming languages. Thus instances will increase gradually, so we are exploring ways to implement a parallelized version of Locality Sensitive Hashing using random projection. This may give us faster results.
+Our dataset contains 56k instances of java source codes only. We are further looking forward to extend our work for source codes from other programming languages. Thus instances will increase gradually, so we are exploring ways to implement a parallelized version of Locality Sensitive Hashing using random projection. This may give us faster results.
 </p>
 
 # 5. References
